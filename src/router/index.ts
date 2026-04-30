@@ -8,6 +8,10 @@ const router = createRouter({
   routes: [
     {
       path: "/",
+      redirect: "/login",
+    },
+    {
+      path: "/login",
       name: "login",
       component: LoginView,
     },
@@ -15,12 +19,13 @@ const router = createRouter({
       path: "/home",
       name: "home",
       component: HomeView,
-      //redirect: "/employees",
-    },
-    {
-      path: "/employees",
-      name: "employees",
-      component: Employees,
+      children: [
+        {
+          path: "/empployees",
+          name: "employees",
+          component: Employees,
+        },
+      ],
     },
   ],
 });

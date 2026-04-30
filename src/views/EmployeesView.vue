@@ -8,34 +8,31 @@ const employees = ref([...trabajadores]);
 const registers = computed(() => employees.value.length);
 
 interface COLS {
-  key: string,
-  label: string,
-  sortable: boolean,
-};
+  key: string;
+  label: string;
+  sortable: boolean;
+}
 
 const columns: COLS[] = [
-        {key: 'nombre', label: 'Nombre', sortable: true},
-        {key: 'puesto', label: 'Puesto', sortable: true},
-        {key: 'sueldo', label: 'Sueldo', sortable: true},
-      ]
-
+  { key: "nombre", label: "Nombre", sortable: true },
+  { key: "puesto", label: "Puesto", sortable: true },
+  { key: "sueldo", label: "Sueldo", sortable: true },
+];
 </script>
 
 <template>
-  <view-header 
-  title="Empleados" 
-  :registers="registers" 
-  :disabled="false" 
-  class="employees-header"/>
+  <view-header
+    title="Empleados"
+    :registers="registers"
+    :disabled="false"
+    class="employees-header"
+  />
 
-  <data-table 
-  :headers="columns" 
-  :items="employees" 
-  class="table-component"/>
+  <data-table :headers="columns" :items="employees" class="table-component" />
 </template>
 
 <style scoped>
-.employees-header{
+.employees-header {
   margin: var(--space-3);
   padding: var(--space-1);
 }
