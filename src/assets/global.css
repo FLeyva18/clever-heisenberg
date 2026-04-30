@@ -1,0 +1,110 @@
+:root {
+  --color-bg: #f8fafc;
+  --color-surface: #ffffff;
+  --color-surface-2: #f1f5f9;
+  --color-border: #e2e8f0;
+  --color-text: #0f172a;
+  --color-text-muted: #64748b;
+
+  --color-primary: #3b82f6;
+  --color-primary-hover: #2563eb;
+
+  --color-danger: #ef4444;
+  --color-success: #22c55e;
+  --color-warning: #f59e0b;
+
+  --shadow-soft: 0 1px 3px 0 rgba(0, 0, 0, 0.1),
+    0 1px 2px -1px rgba(0, 0, 0, 0.1);
+  --shadow-strong: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -2px rgba(0, 0, 0, 0.1);
+
+  --border-thin: 0.5px solid var(--color-border);
+  --border-md: 1px solid var(--color-border);
+  --border-st: 1.5px solid var(--color-border);
+
+  /* Textos */
+  --txt: 1rem; /* 16px */
+  --sm-title: 1.25rem; /* 20px */
+  --gd-title: 1.75rem; /* 28px */
+
+  /* Espaciados */
+  --sm-space: 0.5rem; /* 8px */
+  --md-space: 1rem; /* 16px */
+  --gd-space: 1.5rem; /* 24px */
+
+  /* Otros */
+  --radious: 8px;
+}
+
+/* =========================================
+     2. TABLETS (Pantallas >= 768px)
+     ========================================= */
+@media (min-width: 768px) {
+  :root {
+    /* Solo reescribimos lo que crece */
+    --sm-title: 1.375rem; /* 22px */
+    --gd-title: 2rem; /* 32px */
+
+    --md-space: 1.25rem; /* 20px */
+    --gd-space: 2rem; /* 32px */
+
+    --ancho-tarjeta: 400px;
+  }
+}
+
+/* =========================================
+     3. COMPUTADORAS (Pantallas >= 1024px)
+     ========================================= */
+@media (min-width: 1024px) {
+  :root {
+    --sm-title: 1.5rem; /* 24px */
+    --gd-title: 2.25rem; /* 36px */
+
+    --md-space: 1.5rem; /* 24px */
+    --gd-space: 2.5rem; /* 40px */
+  }
+}
+
+/* Configuraciones base de buena práctica */
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  font-family: roboto, system-ui, sans-serif;
+}
+
+body {
+  background-color: var(--color-bg);
+  color: var(--color-text);
+}
+
+h1 {
+  font-size: var(--gd-title);
+}
+
+h3 {
+  font-size: var(--sm-title);
+}
+
+p {
+  font-size: var(--txt);
+}
+
+.dark {
+  --color-bg: #0f172a;
+  --color-surface: #1e293b;
+  --color-surface-2: #273549;
+  --color-border: #334155;
+  --color-text: #f8fafc;
+  --color-text-muted: #94a3b8;
+
+  --color-primary: #60a5fa;
+  --color-primary-hover: #3b82f6; /* <- Agregado */
+
+  --color-danger: #f87171;
+  --color-success: #4ade80;
+  --color-warning: #fbbf24; /* <- Agregado */
+
+  --shadow-soft: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
+  --shadow-strong: 0 10px 15px -3px rgba(0, 0, 0, 0.4);
+}

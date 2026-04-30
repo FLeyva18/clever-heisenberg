@@ -1,0 +1,24 @@
+button[type="submit"] {
+  border: none;
+  background: var(--color-primary);
+  cursor: pointer;
+  height: 48px;
+  border-radius: var(--radious);
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  color: var(--color-surface);
+  width: 100%;
+}
+
+button[type="submit"]:hover {
+  border: none;
+  outline: none;
+  background: var(--color-primary-hover);
+  transition: background 0.2s;
+}
+
+@media (min-width: 768px) {
+}
+@media (min-width: 1024px) {
+}
