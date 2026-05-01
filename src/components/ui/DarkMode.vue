@@ -1,5 +1,12 @@
 <script lang="ts" setup>
-import { ref } from "vue";
+import { ref, onMounted } from "vue";
+
+onMounted(() => {
+  const savedTheme = localStorage.getItem("theme");
+  if (savedTheme === "dark") {
+    isDark.value = true;
+  }
+});
 
 const isDark = ref(false);
 const toggleDark = () => {
