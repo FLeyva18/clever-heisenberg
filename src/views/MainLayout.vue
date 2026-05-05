@@ -20,7 +20,7 @@ const toggleMenu = () => {
 
   <div class="main-containter">
     <aside :class="{ 'aside-open': isMenuOpen }">
-      <h3>Pandería Pao</h3>
+      <h3><RouterLink to="/">Pandería Pao</RouterLink></h3>
       <div class="side-menu">
         <OptionDisplayer />
       </div>
@@ -28,7 +28,7 @@ const toggleMenu = () => {
         <DarkMode />
       </div>
     </aside>
-    <main></main>
+    <main><RouerView /></main>
   </div>
 </template>
 
@@ -85,6 +85,12 @@ aside {
   grid-template-rows: auto 1fr auto;
   padding: 16px;
   gap: 16px;
+}
+
+aside a {
+  color: var(--color-text);
+  text-decoration: none;
+  letter-spacing: 1px;
 }
 
 .darkmode-container {
