@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from "vue-router";
-import Employees from "../views/EmployeesView.vue";
+import EmployeesView from "../views/EmployeesView.vue";
 import HomeView from "../views/HomeView.vue";
 import LoginView from "../views/LoginView.vue";
 import MainLayout from "../views/MainLayout.vue";
@@ -22,13 +22,13 @@ const router = createRouter({
       component: MainLayout,
       children: [
         {
-          path: "/dashboard",
+          path: "",
           component: HomeView,
         },
         {
-          path: "/employees",
+          path: "employees",
           name: "employees",
-          component: Employees,
+          component: EmployeesView,
         },
       ],
     },

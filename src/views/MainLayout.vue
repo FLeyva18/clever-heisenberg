@@ -28,7 +28,7 @@ const toggleMenu = () => {
         <DarkMode />
       </div>
     </aside>
-    <main><RouerView /></main>
+    <main><RouterView /></main>
   </div>
 </template>
 
