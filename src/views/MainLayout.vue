@@ -127,9 +127,10 @@ aside a {
 
 main {
   height: 1000px;
-  background-color: var(--color-surface);
+  background-color: var(--color-bg);
   position: relative;
   top: 0;
+  padding: var(--sm-space);
 }
 
 @media (min-width: 768px) {
