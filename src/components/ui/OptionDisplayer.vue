@@ -7,17 +7,17 @@ const miMenu = ref<MenuOptions[]>([
     name: "Administrar",
     icon: "settings",
     subMenu: [
-      { option: "Empleados", route: "/empleados" },
-      { option: "Productos", route: "/productos" },
-      { option: "Inventario", route: "/inventario" },
+      { option: "Empleados", route: "home/employees" },
+      { option: "Productos", route: "productos" },
+      { option: "Inventario", route: "inventario" },
     ],
   },
   {
     name: "Reportes",
     icon: "analytics",
     subMenu: [
-      { option: "Ventas", route: "/ventas" },
-      { option: "Merma", route: "/merma" },
+      { option: "Ventas", route: "ventas" },
+      { option: "Merma", route: "merma" },
     ],
   },
 ]);
@@ -53,7 +53,9 @@ const alternarMenu = (nombreDelMenu: string) => {
         <div v-show="menuAbierto === item.name" class="menu-opciones">
           <ul v-if="item.subMenu">
             <li v-for="sub in item.subMenu" :key="sub.option">
-              {{ sub.option }}
+              <RouterLink :to="sub.route">
+                {{ sub.option }}
+              </RouterLink>
             </li>
           </ul>
         </div>

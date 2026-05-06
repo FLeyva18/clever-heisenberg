@@ -27,6 +27,7 @@ const columns: COLS[] = [
     :disabled="false"
     class="employees-header"
   />
+  caca
 
   <data-table :headers="columns" :items="employees" class="table-component" />
 </template>
