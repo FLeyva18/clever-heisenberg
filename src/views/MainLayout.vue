@@ -34,7 +34,7 @@ const toggleMenu = () => {
 
 <style scoped>
 .mobile-bar {
-  background-color: var(--color-text);
+  background-color: var(--color-surface-2);
   height: 48px;
   box-shadow: var(--shadow-soft);
   display: flex;
@@ -61,7 +61,7 @@ const toggleMenu = () => {
 }
 
 .mobile-bar button span {
-  color: var(--color-bg);
+  color: var(--color-text);
   font-size: 48px;
 }
 
