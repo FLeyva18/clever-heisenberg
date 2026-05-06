@@ -85,6 +85,7 @@ aside {
   grid-template-rows: auto 1fr auto;
   padding: 16px;
   gap: 16px;
+  overflow: auto;
 }
 
 aside a {
@@ -96,6 +97,7 @@ aside a {
 .darkmode-container {
   display: flex;
   justify-content: right;
+  width: 100%;
 }
 
 @keyframes toggleMenu {
@@ -126,7 +128,7 @@ aside a {
 }
 
 main {
-  height: 1000px;
+  min-height: calc(100dvh - 48px);
   background-color: var(--color-bg);
   position: relative;
   top: 0;
@@ -134,6 +136,47 @@ main {
 }
 
 @media (min-width: 768px) {
+  .mobile-bar {
+    display: none;
+  }
+
+  .main-containter {
+    display: flex;
+    top: 0;
+    flex-direction: row;
+  }
+
+  aside {
+    height: 100vh;
+    width: 200px;
+    position: static;
+    top: 0;
+    left: 0;
+    animation: none;
+    padding: 0;
+    border-right: var(--border-thin);
+  }
+
+  aside a {
+    text-align: center;
+    width: 100%;
+    display: block;
+    margin: 8px 0;
+  }
+
+  .darkmode-container {
+    display: flex;
+    justify-content: right;
+    max-width: 100%;
+    padding: 8px;
+  }
+
+  main {
+    min-height: 100dvh;
+    position: relative;
+    top: 0;
+    padding: var(--sm-space);
+  }
 }
 @media (min-width: 1024px) {
 }
