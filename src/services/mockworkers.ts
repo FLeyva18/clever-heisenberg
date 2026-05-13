@@ -4,7 +4,7 @@ export const trabajadores = [
     nombre: "Ana García Herrera",
     puesto: "Gerente General",
     departamento: "Dirección",
-    sueldo: 45000,
+    sueldo: 40000,
     turno: "Matutino",
     activo: true,
     fechaIngreso: "2018-03-12",

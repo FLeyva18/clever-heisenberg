@@ -1,13 +1,11 @@
 <script setup lang="ts">
 
-const fmt = (n: number) => n.toLocaleString('es-MX', { style: 'currency', currency: 'MXN', maximumFractionDigits: 0 });
-
 interface Data {
     id: number,
     nombre: string,
     puesto: string,
     departamento: string,
-    sueldo: number,
+    sueldo: number | string,
     turno: string,
     activo: boolean,
     fechaIngreso: string,

@@ -7,6 +7,17 @@ import { trabajadores } from "../services/mockworkers";
 const employees = ref([...trabajadores]);
 const registers = computed(() => employees.value.length);
 
+const fmt = (n: number) => 
+n.toLocaleString('es-MX', { 
+  style: 'currency', 
+  currency: 'MXN', 
+  maximumFractionDigits: 2 });
+
+// Solo formatea para la vista, sin tocar el arreglo original
+const employeesView = computed(() =>
+  employees.value.map(e => ({ ...e, sueldo: fmt(e.sueldo) }))
+);
+
 interface COLS {
   key: string;
   label: string;
@@ -30,7 +41,7 @@ const columns: COLS[] = [
     class="employees-header"
     />
     
-    <data-table :headers="columns" :items="employees" class="table-component" />
+    <data-table :headers="columns" :items="employeesView" class="table-component" />
   </div>
 </template>
 
