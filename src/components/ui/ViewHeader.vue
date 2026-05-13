@@ -28,7 +28,7 @@ withDefaults(defineProps<ViewHeaderProps>(), {
         placeholder="Buscar..."
         :disabled="disabled"
       />
-      <button :disabled="disabled">+ Nuevo</button>
+      <button :disabled="disabled"><span class="material-icons">add</span> Nuevo</button>
     </div>
   </div>
 </template>
@@ -43,12 +43,11 @@ withDefaults(defineProps<ViewHeaderProps>(), {
 }
 
 .employees-header .header-title h2 {
-  color: #000000;
-  font-size: var(--text-md);
+  font-size: var(--txt);
+  letter-spacing: 1.5px;
 }
 
 .employees-header .header-title p {
-  color: #3a3a3a;
   font-weight: var(--weight-emphasis);
   font-size: var(--text-base);
 }
@@ -58,34 +57,28 @@ withDefaults(defineProps<ViewHeaderProps>(), {
   align-items: center;
   justify-content: space-between;
   flex-wrap: wrap;
-  gap: var(--space-4);
+  gap: 16px;
 }
 
 .employees-header .header-tools input[type="text"] {
-  font-size: var(--text-sm);
-  padding: 0 var(--space-3);
-  border-radius: var(--radius-md);
-  border: var(--set-border-thin);
-  height: var(--height-sm);
   min-width: 200px;
 }
 
 .employees-header .header-tools input[type="text"]:focus {
-  border: var(--set-border-thin);
+  border: var(--border-st);
   outline: none;
-  box-shadow: 0 0 5px rgba(25, 154, 228, 0.651);
-  transition: box-shadow 0.2s;
+  color: var(--color-text);
 }
 
 .employees-header .header-tools button {
-  height: var(--height-sm);
-  font-size: var(--text-sm);
-  border: none;
-  cursor: pointer;
-  padding: 0 var(--space-3);
-  background: var(--button-color-emphasis);
-  color: var(--buttontxt-color-emphasis);
-  border-radius: var(--radius-md);
+  background: var(--color-text);
+  color: var(--color-bg);
+  font-size: 14px;
+  padding: 8px 16px;
+  letter-spacing: 1px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .employees-header .header-tools button:active {

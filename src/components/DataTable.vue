@@ -77,8 +77,8 @@ const props = defineProps<Props>();
 <style scoped>
 
 .table-body {
-  border: var(--set-border-thin);
-  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+  border: var(--border-md);
+  border-radius: 8px 8px 0 0;
   overflow: hidden;
 }
 
@@ -89,41 +89,38 @@ const props = defineProps<Props>();
 }
 
 .table-body table thead{
-  background: #f9fafb;
-  font-size: var(--text-base);
-  border-bottom: 2px solid #e5e7eb;
+  background: var(--color-surface-2);
+  font-size: var(--txt);
+  border-bottom: var(--border-thin);
 }
 
 .table-body table thead th, td {
-  cursor:default ;
-  padding: var(--space-2);
+  cursor: default;
+  padding: 8px 4px;
 }
 
 .table-body table tbody td {
-  padding: var(--space-1);
-  font-size: var(--text-sm);
+  padding: 8px;
+  font-size: 14px;
 }
 
 .table-body table tbody tr:nth-child(even) {
-  background: var(--color-emphasis);
+  background: var(--color-surface);
 }
 
 .table-body table tbody tr:hover {
-  background: var(--color-hover-element);
+  background: var(--color-surface-2);
   transition: background 0.2s;
 }
 
 .action-buton-set {
   display: flex;
-  gap: var(--space-2);
+  gap: 4px;
 }
 
 .action-buton-set button{
-  background: none;
-  border: solid 0.5px var(--color-border-thin);
-  padding: 4px 10px;
-  border-radius: var(--radius-md);
-  cursor: pointer;
+  border: var(--border-st);
+  color: var(--color-text);
 }
 
 .action-buton-set .btn-delete{
@@ -137,19 +134,19 @@ th:last-child, td:last-child {
 }
 
 .table-footer {
-  border: var(--set-border-thin);
-  border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+  border: var(--border-thin);
+  border-radius: 0 0 8px 8px;
   border-top: 0;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: var(--space-2);
-  background: var(--color-emphasis);
+  padding: 8px;
+  background: var(--color-bg);
 }
 
 .table-footer p {
-  font-size: var(--text-sm);
-  color: #2a2a2a;
+  font-size: 12px;
+  color: var(--color-text);
 }
 
 .table-footer .button-set {
@@ -159,26 +156,25 @@ th:last-child, td:last-child {
 }
 
 .table-footer .button-set button{
+  color: var(--color-text);
   display: flex;
   align-items: center;
   justify-content: center;
   background: none;
   outline: none;
-  border: solid 0.5px var(--color-border-default);
-  height: var(--height-xs);
-  padding: var(--space-3);
-  border-radius: var(--radius-md);
-  font-size: var(--text-sm);
+  border: var(--border-thin);
+  padding: 4px 16px;
+  border-radius: var(--radious);
+  font-size: 14px;
   cursor: pointer;
 }
 .table-footer .button-set button:hover {
-  background: var(--button-color-emphasis);
-  color: var(--buttontxt-color-emphasis);
+  background: var(--color-text);
+  color: var(--color-bg);
   transition: all 0.2s;
 }
 
 .table-footer .button-set button:active {
-  transform: scale(0.94);
   outline: none;
 }
 </style>

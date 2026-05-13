@@ -21,25 +21,24 @@ const columns: COLS[] = [
 </script>
 
 <template>
-  <view-header
+  <div class="employees-component">
+
+    <view-header
     title="Empleados"
     :registers="registers"
     :disabled="false"
     class="employees-header"
-  />
-  caca
-
-  <data-table :headers="columns" :items="employees" class="table-component" />
+    />
+    
+    <data-table :headers="columns" :items="employees" class="table-component" />
+  </div>
 </template>
 
 <style scoped>
-.employees-header {
-  margin: var(--space-3);
-  padding: var(--space-1);
-}
-
-.table-component {
-  margin: var(--space-3);
-  padding: var(--space-1);
+.employees-component{
+  margin-top: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 }
 </style>

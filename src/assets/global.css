@@ -65,31 +65,6 @@
   }
 }
 
-/* Configuraciones base de buena práctica */
-* {
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
-  font-family: roboto, system-ui, sans-serif;
-}
-
-body {
-  background-color: var(--color-bg);
-  color: var(--color-text);
-}
-
-h1 {
-  font-size: var(--gd-title);
-}
-
-h3 {
-  font-size: var(--sm-title);
-}
-
-p {
-  font-size: var(--txt);
-}
-
 .dark {
   --color-bg: #0f172a;
   --color-surface: #1e293b;
