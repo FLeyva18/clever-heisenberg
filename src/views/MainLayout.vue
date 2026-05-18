@@ -20,9 +20,9 @@ const toggleMenu = () => {
 
   <div class="main-containter">
     <aside :class="{ 'aside-open': isMenuOpen }">
-      <h3><RouterLink to="/">Pandería Pao</RouterLink></h3>
+      <h3><RouterLink to="/" @click="toggleMenu">Pandería Pao</RouterLink></h3>
       <div class="side-menu">
-        <OptionDisplayer />
+        <OptionDisplayer @option-selected="toggleMenu"/>
       </div>
       <div class="darkmode-container">
         <DarkMode />

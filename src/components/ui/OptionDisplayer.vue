@@ -31,6 +31,11 @@ const alternarMenu = (nombreDelMenu: string) => {
     menuAbierto.value = nombreDelMenu;
   }
 };
+
+const emit = defineEmits<{'option-selected': [option: string]}>();
+const handleSelected = (option: string) => {
+  emit("option-selected", option);
+}
 </script>
 
 <template>
@@ -53,7 +58,7 @@ const alternarMenu = (nombreDelMenu: string) => {
         <div v-show="menuAbierto === item.name" class="menu-opciones">
           <ul v-if="item.subMenu">
             <li v-for="sub in item.subMenu" :key="sub.option">
-              <RouterLink :to="sub.route">
+              <RouterLink :to="sub.route" @click="handleSelected(sub.option)">
                 {{ sub.option }}
               </RouterLink>
             </li>
