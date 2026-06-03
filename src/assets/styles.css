@@ -63,7 +63,13 @@ button {
   cursor: pointer;
 }
 
-@media (min-width: 768px) {
+.view-container {
+  margin-top: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 }
-@media (min-width: 1024px) {
-}
+
+@media (min-width: 768px) {}
+
+@media (min-width: 1024px) {}

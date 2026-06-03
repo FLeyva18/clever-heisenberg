@@ -7,17 +7,17 @@ const miMenu = ref<MenuOptions[]>([
     name: "Administrar",
     icon: "settings",
     subMenu: [
-      { option: "Empleados", route: "home/employees" },
-      { option: "Productos", route: "productos" },
-      { option: "Inventario", route: "inventario" },
+      { option: "Empleados", route: "employees" },
+      { option: "Productos", route: "products" },
+      { option: "Inventario", route: "inventory" },
     ],
   },
   {
     name: "Reportes",
     icon: "analytics",
     subMenu: [
-      { option: "Ventas", route: "ventas" },
-      { option: "Merma", route: "merma" },
+      { option: "Ventas", route: "sales" },
+      { option: "Merma", route: "waste" },
     ],
   },
 ]);
@@ -32,10 +32,10 @@ const alternarMenu = (nombreDelMenu: string) => {
   }
 };
 
-const emit = defineEmits<{'option-selected': [option: string]}>();
+const emit = defineEmits<{ "option-selected": [option: string] }>();
 const handleSelected = (option: string) => {
   emit("option-selected", option);
-}
+};
 </script>
 
 <template>

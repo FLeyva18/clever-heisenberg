@@ -3,19 +3,13 @@ import ViewHeader from "../components/ui/ViewHeader.vue";
 import DataTable from "../components/DataTable.vue";
 import { ref, computed } from "vue";
 import { trabajadores } from "../services/mockworkers";
+import { formatCurrency } from "../utils/formatters";
 
 const employees = ref([...trabajadores]);
 const registers = computed(() => employees.value.length);
 
-const fmt = (n: number) => 
-n.toLocaleString('es-MX', { 
-  style: 'currency', 
-  currency: 'MXN', 
-  maximumFractionDigits: 2 });
-
-// Solo formatea para la vista, sin tocar el arreglo original
 const employeesView = computed(() =>
-  employees.value.map(e => ({ ...e, sueldo: fmt(e.sueldo) }))
+  employees.value.map((e) => ({ ...e, sueldo: formatCurrency(e.sueldo) })),
 );
 
 interface COLS {
@@ -32,24 +26,20 @@ const columns: COLS[] = [
 </script>
 
 <template>
-  <div class="employees-component">
-
+  <div class="view-container">
     <view-header
-    title="Empleados"
-    :registers="registers"
-    :disabled="false"
-    class="employees-header"
+      title="Empleados"
+      :registers="registers"
+      :disabled="false"
+      class="employees-header"
     />
-    
-    <data-table :headers="columns" :items="employeesView" class="table-component" />
+
+    <data-table
+      :headers="columns"
+      :items="employeesView"
+      class="table-component"
+    />
   </div>
 </template>
 
-<style scoped>
-.employees-component{
-  margin-top: 8px;
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
-</style>
+<style scoped></style>

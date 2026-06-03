@@ -1,49 +1,43 @@
 <script setup lang="ts">
-
 interface Data {
-    id: number,
-    nombre: string,
-    puesto: string,
-    departamento: string,
-    sueldo: number | string,
-    turno: string,
-    activo: boolean,
-    fechaIngreso: string,
-  }
+  id: number;
+  nombre: string;
+  puesto: string;
+  departamento: string;
+  sueldo: number | string;
+  turno: string;
+  activo: boolean;
+  fechaIngreso: string;
+}
 
 interface Header {
-    key: string,
-    label: string,
-    sortable: boolean,
+  key: string;
+  label: string;
+  sortable: boolean;
 }
 
 interface Props {
-  headers: Header[],
-  items: Data[],
+  headers: Header[];
+  items: Data[];
 }
 
-
 const props = defineProps<Props>();
-  const emits = defineEmits<{
-    (e: 'modify', item: Data): void
-    (e: 'delete', id:number): void
-  }>();
-  
+const emits = defineEmits<{
+  (e: "modify", item: Data): void;
+  (e: "delete", id: number): void;
+}>();
 </script>
 
 <template>
   <div class="table-component">
-
     <div class="table-body">
       <table>
         <thead>
-          <tr>       
+          <tr>
             <th v-for="c in headers" :key="c.key">
               {{ c.label }}
             </th>
-            <th>
-              Acciones
-            </th>
+            <th>Acciones</th>
           </tr>
         </thead>
         <tbody>
@@ -69,11 +63,9 @@ const props = defineProps<Props>();
       </div>
     </div>
   </div>
-    
 </template>
 
 <style scoped>
-
 .table-body {
   border: var(--border-md);
   border-radius: 8px 8px 0 0;
@@ -86,13 +78,14 @@ const props = defineProps<Props>();
   text-align: left;
 }
 
-.table-body table thead{
+.table-body table thead {
   background: var(--color-surface-2);
   font-size: var(--txt);
   border-bottom: var(--border-thin);
 }
 
-.table-body table thead th, td {
+.table-body table thead th,
+td {
   cursor: default;
   padding: 8px 4px;
 }
@@ -116,17 +109,18 @@ const props = defineProps<Props>();
   gap: 4px;
 }
 
-.action-buton-set button{
+.action-buton-set button {
   border: var(--border-st);
   color: var(--color-text);
 }
 
-.action-buton-set .btn-delete{
+.action-buton-set .btn-delete {
   border: 0.5px solid rgb(240, 149, 149);
   color: rgb(163, 45, 45);
 }
 
-th:last-child, td:last-child {
+th:last-child,
+td:last-child {
   width: 140px;
   text-align: right;
 }
@@ -153,7 +147,7 @@ th:last-child, td:last-child {
   flex-wrap: wrap;
 }
 
-.table-footer .button-set button{
+.table-footer .button-set button {
   color: var(--color-text);
   display: flex;
   align-items: center;
