@@ -3,38 +3,52 @@ interface ViewHeaderProps {
   title: string;
   registers: number;
   disabled?: boolean;
+  modelValue?: string;
 }
 
-withDefaults(defineProps<ViewHeaderProps>(), {
+const props = withDefaults(defineProps<ViewHeaderProps>(), {
   title: "View Title",
   registers: 0,
   disabled: false,
+  modelValue: "",
 });
+
+const emits = defineEmits<{
+  (e: "update:modelValue", value: string): void;
+  (e: "add"): void;
+}>();
+
+const onInput = (event: Event) => {
+  const target = event.target as HTMLInputElement;
+  emits("update:modelValue", target.value);
+};
 </script>
 
 <template>
-  <div class="employees-header">
+  <div class="header-container">
     <div class="header-title">
       <h2>{{ title }}</h2>
       <p>
-        <strong>{{ registers }}</strong> Registros encontrados
+        <strong>{{ registers }}</strong>
       </p>
     </div>
     <div class="header-tools">
       <input
         type="text"
-        name=""
-        id=""
         placeholder="Buscar..."
         :disabled="disabled"
+        :value="modelValue"
+        @input="onInput"
       />
-      <button :disabled="disabled"><span class="material-icons">add</span> Nuevo</button>
+      <button :disabled="disabled" @click="emits('add')">
+        <span class="material-icons">add</span> Nuevo
+      </button>
     </div>
   </div>
 </template>
 
 <style scoped>
-.employees-header {
+.header-container {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -42,17 +56,17 @@ withDefaults(defineProps<ViewHeaderProps>(), {
   gap: 10px;
 }
 
-.employees-header .header-title h2 {
+.header-container .header-title h2 {
   font-size: var(--txt);
   letter-spacing: 1.5px;
 }
 
-.employees-header .header-title p {
+.header-container .header-title p {
   font-weight: var(--weight-emphasis);
   font-size: var(--text-base);
 }
 
-.employees-header .header-tools {
+.header-container .header-tools {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -60,17 +74,17 @@ withDefaults(defineProps<ViewHeaderProps>(), {
   gap: 16px;
 }
 
-.employees-header .header-tools input[type="text"] {
+.header-container .header-tools input[type="text"] {
   min-width: 200px;
 }
 
-.employees-header .header-tools input[type="text"]:focus {
+.header-container .header-tools input[type="text"]:focus {
   border: var(--border-st);
   outline: none;
   color: var(--color-text);
 }
 
-.employees-header .header-tools button {
+.header-container .header-tools button {
   background: var(--color-text);
   color: var(--color-bg);
   font-size: 14px;
@@ -79,9 +93,10 @@ withDefaults(defineProps<ViewHeaderProps>(), {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  cursor: pointer;
 }
 
-.employees-header .header-tools button:active {
+.header-container .header-tools button:active {
   transform: scale(0.97);
 }
 </style>

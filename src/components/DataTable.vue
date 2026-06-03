@@ -1,15 +1,4 @@
 <script setup lang="ts">
-interface Data {
-  id: number;
-  nombre: string;
-  puesto: string;
-  departamento: string;
-  sueldo: number | string;
-  turno: string;
-  activo: boolean;
-  fechaIngreso: string;
-}
-
 interface Header {
   key: string;
   label: string;
@@ -18,12 +7,13 @@ interface Header {
 
 interface Props {
   headers: Header[];
-  items: Data[];
+  items: Record<string, any>[];
 }
 
 const props = defineProps<Props>();
+
 const emits = defineEmits<{
-  (e: "modify", item: Data): void;
+  (e: "edit", item: any): void;
   (e: "delete", id: number): void;
 }>();
 </script>
@@ -44,12 +34,16 @@ const emits = defineEmits<{
           <tr v-for="item in items" :key="item.id">
             <td v-for="header in headers" :key="header.key">
               <slot :name="header.key" :item="item">
-                {{ item[header.key as keyof Data] }}
+                {{ item[header.key] }}
               </slot>
             </td>
             <td class="action-buton-set">
-              <button class="btn-edit">Editar</button>
-              <button class="btn-delete">Eliminar</button>
+              <button class="btn-edit" @click="emits('edit', item)">
+                Editar
+              </button>
+              <button class="btn-delete" @click="emits('delete', item.id)">
+                Eliminar
+              </button>
             </td>
           </tr>
         </tbody>

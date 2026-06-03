@@ -1,23 +1,60 @@
 <script lang="ts" setup>
-import { ref, onMounted } from "vue";
+import { ref, onMounted, computed } from "vue";
 import { API_BASE_URL } from "../services/config";
 import type { Product, CreateProduct } from "../types/ProductInterface";
 import { formatCurrency } from "../utils/formatters";
 import ViewHeader from "../components/ui/ViewHeader.vue";
 import DataTable from "../components/DataTable.vue";
+import ProductForm from "../forms/ProductForm.vue";
 
 const products = ref<Product[]>([]);
 const loading = ref<boolean>(false);
 const error = ref<string | null>(null);
+const showForm = ref<boolean>(false);
+const selectedProduct = ref<Product | null>(null);
+const searchQuery = ref<string>("");
 
-const newProduct = ref<CreateProduct>({
-  code: "",
-  product: "",
-  price: 0,
-  category_id: null,
-  description: null,
-  prev_price: null,
-  image_url: null,
+const COLS = [
+  { key: "code", label: "Código", sortable: true },
+  { key: "product", label: "Producto", sortable: true },
+  { key: "price", label: "Precio", sortable: true },
+  { key: "category_id", label: "Categoría", sortable: true },
+];
+
+const openCreateModal = () => {
+  selectedProduct.value = null;
+  showForm.value = true;
+};
+
+const openEditModal = (product: Product) => {
+  selectedProduct.value = product;
+  showForm.value = true;
+};
+
+const handleFormSubmit = async (formData: CreateProduct) => {
+  if (selectedProduct.value) {
+    await updateProduct(selectedProduct.value.id, formData);
+  } else {
+    await createProduct(formData);
+  }
+  showForm.value = false;
+};
+
+const filteredProducts = computed(() => {
+  let formatted = products.value.map((p) => ({
+    ...p,
+    price: formatCurrency(Number(p.price)),
+  }));
+
+  if (!searchQuery.value) return formatted;
+
+  const query = searchQuery.value.toLowerCase();
+
+  return formatted.filter((product) => {
+    return Object.values(product).some((val) =>
+      String(val).toLowerCase().includes(query),
+    );
+  });
 });
 
 const getProducts = async (): Promise<void> => {
@@ -36,12 +73,12 @@ const getProducts = async (): Promise<void> => {
   }
 };
 
-const createProduct = async (): Promise<void> => {
+const createProduct = async (formData: CreateProduct): Promise<void> => {
   try {
     const response = await fetch(`${API_BASE_URL}/products`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(newProduct.value),
+      body: JSON.stringify(formData),
     });
 
     if (!response.ok) throw new Error("Failed to create product");
@@ -49,16 +86,6 @@ const createProduct = async (): Promise<void> => {
     const createdProduct = (await response.json()) as Product;
 
     products.value.push(createdProduct);
-
-    newProduct.value = {
-      code: "",
-      product: "",
-      price: 0,
-      category_id: null,
-      description: null,
-      prev_price: null,
-      image_url: null,
-    };
   } catch (err: any) {
     error.value = err.message || "An error occurred while creating product";
   }
@@ -71,14 +98,12 @@ const deleteProduct = async (id: number): Promise<void> => {
     });
     if (!response.ok) throw new Error("Failed to delete product");
 
-    // CORRECCIÓN 2: Filtramos el arreglo local
     products.value = products.value.filter((p) => p.id !== id);
   } catch (err: any) {
     error.value = err.message || "An error occurred while deleting product";
   }
 };
 
-// Se deja preparado para cuando implementes el botón de "Editar"
 const updateProduct = async (
   id: number,
   updatedData: CreateProduct,
@@ -112,9 +137,22 @@ onMounted(() => {
   <div class="view-container">
     <view-header
       title="Productos"
-      :registers="products.length"
-      :disabled="false"
+      :registers="filteredProducts.length"
+      :disabled="loading"
+      v-model="searchQuery"
+      @add="openCreateModal"
+    /><data-table
+      :headers="COLS"
+      :items="filteredProducts"
+      @delete="deleteProduct"
+      @edit="openEditModal"
     />
-    <!-- <data-table :headers="columns" :items="productsView" /> -->
   </div>
+
+  <product-form
+    v-if="showForm"
+    :product="selectedProduct"
+    @close="showForm = false"
+    @submit="handleFormSubmit"
+  />
 </template>

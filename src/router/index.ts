@@ -11,6 +11,10 @@ const router = createRouter({
   history: createWebHistory(),
   routes: [
     {
+      path: "/",
+      redirect: "/home",
+    },
+    {
       path: "/login",
       name: "login",
       component: LoginView,
@@ -25,12 +29,12 @@ const router = createRouter({
           component: HomeView,
         },
         {
-          path: "employees",
+          path: "/employees",
           name: "employees",
           component: EmployeesView,
         },
         {
-          path: "products",
+          path: "/products",
           name: "products",
           component: ProductsView,
         },
