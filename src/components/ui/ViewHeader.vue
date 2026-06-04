@@ -29,7 +29,7 @@ const onInput = (event: Event) => {
     <div class="header-title">
       <h2>{{ title }}</h2>
       <p>
-        <strong>{{ registers }}</strong>
+        <strong>{{ registers }}</strong> Registros Encontrados
       </p>
     </div>
     <div class="header-tools">
@@ -62,8 +62,9 @@ const onInput = (event: Event) => {
 }
 
 .header-container .header-title p {
-  font-weight: var(--weight-emphasis);
-  font-size: var(--text-base);
+  font-size: 14px;
+  letter-spacing: 1px;
+  color: var(--color-text-muted);
 }
 
 .header-container .header-tools {

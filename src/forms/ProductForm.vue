@@ -99,15 +99,31 @@ const sendData = () => {
   align-items: center;
   z-index: 999;
 }
+
+h2 {
+  margin-bottom: 24px;
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+button {
+  color: var(--color-text);
+}
+
 .form-card {
   background: var(--color-bg, #fff);
-  padding: 24px;
-  border-radius: 8px;
+  padding: 48px 24px;
+  border-radius: var(--radius, 8px);
   width: 400px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 .form-group {
-  margin-bottom: 14px;
+  margin-bottom: 16px;
   display: flex;
   flex-direction: column;
   gap: 4px;
@@ -124,5 +140,6 @@ const sendData = () => {
   border: none;
   padding: 8px 16px;
   cursor: pointer;
+  font-weight: 800;
 }
 </style>

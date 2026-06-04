@@ -2,7 +2,9 @@
   --color-bg: #f8fafc;
   --color-surface: #ffffff;
   --color-surface-2: #f1f5f9;
-  --color-border: #e2e8f0;
+  --color-border: #e2e8f0b0;
+  --color-border2: #f3f5f7b0;
+  --color-border3: #f3f5f7;
   --color-text: #0f172a;
   --color-text-muted: #64748b;
 
@@ -18,19 +20,25 @@
   --shadow-strong: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
     0 2px 4px -2px rgba(0, 0, 0, 0.1);
 
-  --border-thin: 0.5px solid var(--color-border);
-  --border-md: 1px solid var(--color-border);
-  --border-st: 1.5px solid var(--color-border);
+  --border-thin: 1px solid var(--color-border);
+  --border-md: 2px solid var(--color-border2);
+  --border-st: 2px solid var(--color-border3);
 
   /* Textos */
-  --txt: 1rem; /* 16px */
-  --sm-title: 1.25rem; /* 20px */
-  --gd-title: 1.75rem; /* 28px */
+  --txt: 1rem;
+  /* 16px */
+  --sm-title: 1.25rem;
+  /* 20px */
+  --gd-title: 1.75rem;
+  /* 28px */
 
   /* Espaciados */
-  --sm-space: 0.5rem; /* 8px */
-  --md-space: 1rem; /* 16px */
-  --gd-space: 1.5rem; /* 24px */
+  --sm-space: 0.5rem;
+  /* 8px */
+  --md-space: 1rem;
+  /* 16px */
+  --gd-space: 1.5rem;
+  /* 24px */
 
   /* Otros */
   --radious: 8px;
@@ -42,11 +50,15 @@
 @media (min-width: 768px) {
   :root {
     /* Solo reescribimos lo que crece */
-    --sm-title: 1.375rem; /* 22px */
-    --gd-title: 2rem; /* 32px */
+    --sm-title: 1.375rem;
+    /* 22px */
+    --gd-title: 2rem;
+    /* 32px */
 
-    --md-space: 1.25rem; /* 20px */
-    --gd-space: 2rem; /* 32px */
+    --md-space: 1.25rem;
+    /* 20px */
+    --gd-space: 2rem;
+    /* 32px */
 
     --ancho-tarjeta: 400px;
   }
@@ -57,11 +69,15 @@
      ========================================= */
 @media (min-width: 1024px) {
   :root {
-    --sm-title: 1.5rem; /* 24px */
-    --gd-title: 2.25rem; /* 36px */
+    --sm-title: 1.5rem;
+    /* 24px */
+    --gd-title: 2.25rem;
+    /* 36px */
 
-    --md-space: 1.5rem; /* 24px */
-    --gd-space: 2.5rem; /* 40px */
+    --md-space: 1.5rem;
+    /* 24px */
+    --gd-space: 2.5rem;
+    /* 40px */
   }
 }
 
@@ -74,11 +90,13 @@
   --color-text-muted: #94a3b8;
 
   --color-primary: #60a5fa;
-  --color-primary-hover: #3b82f6; /* <- Agregado */
+  --color-primary-hover: #3b82f6;
+  /* <- Agregado */
 
   --color-danger: #f87171;
   --color-success: #4ade80;
-  --color-warning: #fbbf24; /* <- Agregado */
+  --color-warning: #fbbf24;
+  /* <- Agregado */
 
   --shadow-soft: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
   --shadow-strong: 0 10px 15px -3px rgba(0, 0, 0, 0.4);

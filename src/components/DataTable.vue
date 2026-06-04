@@ -61,7 +61,7 @@ const emits = defineEmits<{
 
 <style scoped>
 .table-body {
-  border: var(--border-md);
+  border: var(--border-thin);
   border-radius: 8px 8px 0 0;
   overflow: hidden;
 }
@@ -104,13 +104,13 @@ td {
 }
 
 .action-buton-set button {
-  border: var(--border-st);
+  border: var(--border-thin);
   color: var(--color-text);
 }
 
 .action-buton-set .btn-delete {
-  border: 0.5px solid rgb(240, 149, 149);
-  color: rgb(163, 45, 45);
+  border: 1px solid rgba(255, 50, 50, 0.557);
+  color: rgb(233, 42, 42);
 }
 
 th:last-child,

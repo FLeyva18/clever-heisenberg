@@ -22,7 +22,7 @@ const toggleMenu = () => {
     <aside :class="{ 'aside-open': isMenuOpen }">
       <h3><RouterLink to="/" @click="toggleMenu">Pandería Pao</RouterLink></h3>
       <div class="side-menu">
-        <OptionDisplayer @option-selected="toggleMenu"/>
+        <OptionDisplayer @option-selected="toggleMenu" />
       </div>
       <div class="darkmode-container">
         <DarkMode />
@@ -147,9 +147,9 @@ main {
   }
 
   aside {
-    height: 100vh;
+    height: 100dvh;
     width: 200px;
-    position: static;
+    position: fixed;
     top: 0;
     left: 0;
     animation: none;
@@ -175,7 +175,9 @@ main {
     min-height: 100dvh;
     position: relative;
     top: 0;
-    padding: var(--sm-space);
+    padding: var(--md-space);
+    left: 200px;
+    width: calc(100% - 200px);
   }
 }
 @media (min-width: 1024px) {
