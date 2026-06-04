@@ -41,16 +41,11 @@ const handleFormSubmit = async (formData: CreateProduct) => {
 };
 
 const filteredProducts = computed(() => {
-  let formatted = products.value.map((p) => ({
-    ...p,
-    price: formatCurrency(Number(p.price)),
-  }));
-
-  if (!searchQuery.value) return formatted;
+  if (!searchQuery.value) return products.value;
 
   const query = searchQuery.value.toLowerCase();
 
-  return formatted.filter((product) => {
+  return products.value.filter((product) => {
     return Object.values(product).some((val) =>
       String(val).toLowerCase().includes(query),
     );
@@ -141,12 +136,17 @@ onMounted(() => {
       :disabled="loading"
       v-model="searchQuery"
       @add="openCreateModal"
-    /><data-table
+    />
+    <data-table
       :headers="COLS"
       :items="filteredProducts"
       @delete="deleteProduct"
       @edit="openEditModal"
-    />
+    >
+      <template #price="{ item }">
+        {{ formatCurrency(Number(item.price)) }}
+      </template>
+    </data-table>
   </div>
 
   <product-form
