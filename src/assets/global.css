@@ -101,3 +101,17 @@
   --shadow-soft: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
   --shadow-strong: 0 10px 15px -3px rgba(0, 0, 0, 0.4);
 }
+
+.dark .swal2-popup {
+  background-color: #1f2937 !important;
+  color: #f3f4f6 !important;
+}
+
+.dark .swal2-title,
+.dark .swal2-html-container {
+  color: #f3f4f6 !important;
+}
+
+.dark .swal2-container.swal2-backdrop-show {
+  background: rgba(0, 0, 0, 0.8) !important;
+}

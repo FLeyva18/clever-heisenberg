@@ -6,10 +6,21 @@
   font-family: roboto, system-ui, sans-serif;
 }
 
+*::-webkit-scrollbar {
+  display: none;
+}
+
+* {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
 body {
   background-color: var(--color-bg);
   color: var(--color-text);
 }
+
+
 
 h1 {
   font-size: var(--gd-title);
@@ -82,6 +93,50 @@ button {
   display: flex;
   flex-direction: column;
   gap: 16px;
+}
+
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+.form-card {
+  background: var(--color-bg, #fff);
+  padding: 48px 24px;
+  border-radius: var(--radius, 8px);
+  width: 400px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.form-group {
+  margin-bottom: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 20px;
+}
+
+.btn-primary {
+  background: var(--color-text, #000);
+  color: var(--color-bg, #fff);
+  border: none;
+  padding: 8px 16px;
+  cursor: pointer;
+  font-weight: 800;
 }
 
 @media (min-width: 768px) {}

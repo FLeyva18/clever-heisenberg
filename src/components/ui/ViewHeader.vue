@@ -16,6 +16,7 @@ const props = withDefaults(defineProps<ViewHeaderProps>(), {
 const emits = defineEmits<{
   (e: "update:modelValue", value: string): void;
   (e: "add"): void;
+  (e: "download"): void;
 }>();
 
 const onInput = (event: Event) => {
@@ -40,6 +41,13 @@ const onInput = (event: Event) => {
         :value="modelValue"
         @input="onInput"
       />
+      <button
+        class="download-button"
+        :disabled="disabled"
+        @click="emits('download')"
+      >
+        <span class="material-icons">download</span>
+      </button>
       <button :disabled="disabled" @click="emits('add')">
         <span class="material-icons">add</span> Nuevo
       </button>
@@ -80,7 +88,7 @@ const onInput = (event: Event) => {
 }
 
 .header-container .header-tools input[type="text"]:focus {
-  border: var(--border-st);
+  border-bottom: var(--border-md);
   outline: none;
   color: var(--color-text);
 }
@@ -89,7 +97,7 @@ const onInput = (event: Event) => {
   background: var(--color-text);
   color: var(--color-bg);
   font-size: 14px;
-  padding: 8px 16px;
+  padding: 4px 8px;
   letter-spacing: 1px;
   display: flex;
   align-items: center;
@@ -99,5 +107,16 @@ const onInput = (event: Event) => {
 
 .header-container .header-tools button:active {
   transform: scale(0.97);
+}
+
+.header-container .header-tools .download-button {
+  background: none;
+  border: none;
+}
+
+.download-button span {
+  border: none;
+  background: none;
+  color: var(--color-text);
 }
 </style>

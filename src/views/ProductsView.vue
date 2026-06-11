@@ -6,11 +6,15 @@ import { formatCurrency } from "../utils/formatters";
 import ViewHeader from "../components/ui/ViewHeader.vue";
 import DataTable from "../components/DataTable.vue";
 import ProductForm from "../forms/ProductForm.vue";
+import Swal from "sweetalert2";
+import DownloadOptions from "../forms/DownloadOptions.vue";
+import { toast } from "vue3-toastify";
 
 const products = ref<Product[]>([]);
 const loading = ref<boolean>(false);
 const error = ref<string | null>(null);
 const showForm = ref<boolean>(false);
+const showDownloadOptions = ref<boolean>(false);
 const selectedProduct = ref<Product | null>(null);
 const searchQuery = ref<string>("");
 
@@ -29,6 +33,16 @@ const openCreateModal = () => {
 const openEditModal = (product: Product) => {
   selectedProduct.value = product;
   showForm.value = true;
+};
+
+const descargarPDF = () => {
+  console.log("Llamando al backend para descargar PDF de PRODUCTOS...");
+  showDownloadOptions.value = false;
+};
+
+const descargarExcel = () => {
+  console.log("Llamando al backend para descargar Excel de PRODUCTOS...");
+  showDownloadOptions.value = false;
 };
 
 const handleFormSubmit = async (formData: CreateProduct) => {
@@ -69,7 +83,7 @@ const getProducts = async (): Promise<void> => {
 };
 
 const createProduct = async (formData: CreateProduct): Promise<void> => {
-  try {
+  const createRequest = async () => {
     const response = await fetch(`${API_BASE_URL}/products`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -81,29 +95,48 @@ const createProduct = async (formData: CreateProduct): Promise<void> => {
     const createdProduct = (await response.json()) as Product;
 
     products.value.push(createdProduct);
-  } catch (err: any) {
-    error.value = err.message || "An error occurred while creating product";
-  }
+  };
+
+  await toast.promise(createRequest(), {
+    pending: "Creando producto...",
+    success: "Producto creado correctamente",
+    error: "Error al crear el producto",
+  });
 };
 
 const deleteProduct = async (id: number): Promise<void> => {
-  try {
+  const result = await Swal.fire({
+    title: "¿Estás seguro?",
+    text: "¡No podrás revertir esto!",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonText: "Sí, eliminar",
+  });
+
+  if (!result.isConfirmed) return;
+
+  const deleteRequest = async () => {
     const response = await fetch(`${API_BASE_URL}/products/${id}`, {
       method: "DELETE",
     });
-    if (!response.ok) throw new Error("Failed to delete product");
+
+    if (!response.ok) throw new Error("No se pudo eliminar el producto");
 
     products.value = products.value.filter((p) => p.id !== id);
-  } catch (err: any) {
-    error.value = err.message || "An error occurred while deleting product";
-  }
+  };
+
+  toast.promise(deleteRequest(), {
+    pending: "Eliminando registro...",
+    success: "Producto eliminado correctamente",
+    error: "Error al contactar con la base de datos",
+  });
 };
 
 const updateProduct = async (
   id: number,
   updatedData: CreateProduct,
 ): Promise<void> => {
-  try {
+  const updateRequest = async () => {
     const response = await fetch(`${API_BASE_URL}/products/${id}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
@@ -118,9 +151,12 @@ const updateProduct = async (
     if (index !== -1) {
       products.value[index] = updatedProduct;
     }
-  } catch (err: any) {
-    error.value = err.message || "An error occurred while updating product";
-  }
+  };
+  toast.promise(updateRequest(), {
+    pending: "Actualizando producto...",
+    success: "Producto actualizado correctamente",
+    error: "Error al actualizar el producto",
+  });
 };
 
 onMounted(() => {
@@ -136,6 +172,7 @@ onMounted(() => {
       :disabled="loading"
       v-model="searchQuery"
       @add="openCreateModal"
+      @download="showDownloadOptions = true"
     />
     <data-table
       :headers="COLS"
@@ -154,5 +191,13 @@ onMounted(() => {
     :product="selectedProduct"
     @close="showForm = false"
     @submit="handleFormSubmit"
+  />
+
+  <DownloadOptions
+    v-if="showDownloadOptions"
+    @close="showDownloadOptions = false"
+    @pdf="descargarPDF"
+    @excel="descargarExcel"
+    @csv="showDownloadOptions = false"
   />
 </template>
