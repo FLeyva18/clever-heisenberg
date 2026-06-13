@@ -8,6 +8,8 @@ interface Header {
 interface Props {
   headers: Header[];
   items: Record<string, any>[];
+  sortKey?: string;
+  sortOrder?: "asc" | "desc";
 }
 
 const props = defineProps<Props>();
@@ -15,6 +17,7 @@ const props = defineProps<Props>();
 const emits = defineEmits<{
   (e: "edit", item: any): void;
   (e: "delete", id: number): void;
+  (e: "sort", key: string): void;
 }>();
 </script>
 
@@ -24,8 +27,16 @@ const emits = defineEmits<{
       <table>
         <thead>
           <tr>
-            <th v-for="c in headers" :key="c.key">
+            <th
+              v-for="c in headers"
+              :key="c.key"
+              @click="c.sortable ? emits('sort', c.key) : null"
+              :class="{ 'is-sortable': c.sortable }"
+            >
               {{ c.label }}
+              <span v-if="sortKey === c.key" class="sort-icon">
+                {{ sortOrder === "asc" ? "↑" : "↓" }}
+              </span>
             </th>
             <th>Acciones</th>
           </tr>
@@ -49,17 +60,23 @@ const emits = defineEmits<{
         </tbody>
       </table>
     </div>
-    <div class="table-footer">
-      <p>página 1 de 1</p>
-      <div class="button-set">
-        <button>← Anterior</button>
-        <button>Siguiente →</button>
-      </div>
-    </div>
   </div>
 </template>
 
 <style scoped>
+th.is-sortable {
+  cursor: pointer;
+  user-select: none;
+}
+th.is-sortable:hover {
+  background: var(--color-surface);
+  transition: background 0.2s;
+}
+.sort-icon {
+  margin-left: 4px;
+  font-size: 12px;
+}
+
 .table-body {
   border: var(--border-thin);
   border-radius: 8px 8px 0 0;

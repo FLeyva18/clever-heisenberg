@@ -1,9 +1,9 @@
 export interface Category {
   id: number;
-  name: string;
+  category: string;
   created_at: string;
 }
 
 export interface CreateCategory {
-  name: string;
+  category: string;
 }
