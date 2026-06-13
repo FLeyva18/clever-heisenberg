@@ -12,7 +12,7 @@ interface Props {
   sortOrder?: "asc" | "desc";
 }
 
-const props = defineProps<Props>();
+defineProps<Props>();
 
 const emits = defineEmits<{
   (e: "edit", item: any): void;

@@ -6,7 +6,7 @@ interface ViewHeaderProps {
   modelValue?: string;
 }
 
-const props = withDefaults(defineProps<ViewHeaderProps>(), {
+withDefaults(defineProps<ViewHeaderProps>(), {
   title: "View Title",
   registers: 0,
   disabled: false,
