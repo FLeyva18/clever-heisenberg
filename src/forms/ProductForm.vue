@@ -3,7 +3,6 @@ import { ref, computed, watch, onMounted } from "vue";
 import type { Product, CreateProduct } from "../types/ProductInterface";
 import type { Category } from "../types/CategoryInterface";
 import { API_BASE_URL } from "../services/config";
-import { toast } from "vue3-toastify";
 import Swal from "sweetalert2";
 
 interface Props {
