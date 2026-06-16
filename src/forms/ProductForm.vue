@@ -99,11 +99,6 @@ const createCategory = async (name: string): Promise<number | null> => {
 const processForm = async () => {
   const nameOfCategory = searchCategory.value.trim();
 
-  if (!nameOfCategory) {
-    toast.warning("Por favor, ingresa un nombre de categoría");
-    return;
-  }
-
   const existingCategory = categories.value.find(
     (cat) => cat.category.toLowerCase() === nameOfCategory.toLowerCase(),
   );
@@ -112,7 +107,7 @@ const processForm = async () => {
 
   if (existingCategory) {
     finalCategoryId = existingCategory.id;
-  } else {
+  } else if (nameOfCategory != "") {
     const result = await Swal.fire({
       title: "Categoría no encontrada",
       text: `La categoría "${nameOfCategory}" no existe. ¿Deseas agregarla a la base de datos?`,
